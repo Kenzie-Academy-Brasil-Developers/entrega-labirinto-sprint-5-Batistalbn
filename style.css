@@ -1,13 +1,25 @@
+/* Labirinto */
 #map {
     display:flex;
     flex-direction: column;
 }
 
-.linha {
+.line {
     display: flex;
 }
 
-.celula {
+.cell {
     width: 20px;
     height: 20px;
 }
+/* Labirinto */
+
+/* player */
+.player {
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 150px;
+    margin: 2.5px;
+}
+/* player */

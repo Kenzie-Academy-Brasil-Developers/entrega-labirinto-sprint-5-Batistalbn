@@ -1,3 +1,4 @@
+// Labirinto e player
 const map = [
     "WWWWWWWWWWWWWWWWWWWWW",
     "W   W     W     W W W",
@@ -16,22 +17,27 @@ const map = [
     "WWWWWWWWWWWWWWWWWWWWW",
 ];
 
-const mapSection = document.getElementById('map')
+const mapSection = document.getElementById('map');
 
 for (let i = 0; i < map.length; i++) {
-    let linha = document.createElement('div')
-    linha.id = `linha${i}`
-    linha.classList.add('linha')
-    console.log(linha)
+    let line = document.createElement('div');
+    line.id = `line${i}`;
+    line.classList.add('line');
     for (let j = 0; j < map[i].length; j++) {
-        let celula = document.createElement('div');
-        celula.id = `celula${j}`
-        celula.classList.add('celula')
-        linha.appendChild(celula)
+        let cell = document.createElement('div');
+        cell.id = `cell${j}`;
+        cell.classList.add('cell');
+        line.appendChild(cell);
         if (map[i][j] === 'W') {
-            celula.style.backgroundColor = "#0000FF"
+            cell.style.backgroundColor = "#0000FF";
+        } 
+        else if (map[i][j] === 'S') {
+            let player = document.createElement('div');
+            player.id = "player";
+            player.classList.add('player');
+            cell.appendChild(player)
         }
     }
-    mapSection.appendChild(linha)
-
+    mapSection.appendChild(line);
 }
+// Labirinto e player
