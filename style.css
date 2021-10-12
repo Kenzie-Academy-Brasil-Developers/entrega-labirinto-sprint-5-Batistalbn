@@ -1,0 +1,13 @@
+#map {
+    display:flex;
+    flex-direction: column;
+}
+
+.linha {
+    display: flex;
+}
+
+.celula {
+    width: 20px;
+    height: 20px;
+}
