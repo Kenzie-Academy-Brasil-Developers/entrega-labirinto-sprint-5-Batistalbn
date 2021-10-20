@@ -1,13 +1,72 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color:aqua;
+}
+
+.title {
+    font-size: 46px;
+    font-weight: 700;
+    font-family:Arial, Helvetica, sans-serif ;
+    color: blue;
+    margin: 50px 0;
+}
+
+.textWin {
+    font-size: 26px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    color: chocolate;
+    margin-bottom: 15px;
+}
+
+/* Labirinto */
 #map {
     display:flex;
     flex-direction: column;
 }
 
-.linha {
+.line {
     display: flex;
 }
 
-.celula {
-    width: 20px;
-    height: 20px;
+.cell {
+    width: 15px;
+    height: 15px;
+}
+/* Labirinto */
+
+/* player */
+.player {
+    width: 10px;
+    height: 10px;
+    background-color: yellow;
+    border-radius: 150px;
+    margin: 2.5px;
+}
+/* player */
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 26px;
+    color: white;
+    background-color: chocolate;
+    border-radius: 5px;
+    border: none;
+}
+
+@media screen and (min-width: 800px) {
+    .cell {
+        width: 30px;
+        height: 30px;
+    }
+    .player {
+        width: 20px;
+        height: 20px;
+        margin: 5px;
+
+    }
 }
