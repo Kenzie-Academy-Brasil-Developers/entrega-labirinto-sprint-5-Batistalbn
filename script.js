@@ -16,7 +16,6 @@ const map = [
     "W       W       W   W",
     "WWWWWWWWWWWWWWWWWWWWW",
 ];
-
 const mapSection = document.getElementById('map');
 
 for (let i = 0; i < map.length; i++) {
@@ -29,7 +28,7 @@ for (let i = 0; i < map.length; i++) {
         cell.classList.add('cell');
         line.appendChild(cell);
         if (map[i][j] === 'W') {
-            cell.style.backgroundColor = "#0000FF";
+            cell.style.backgroundColor = "#8B4513	";
         } else if (map[i][j] === 'S') {
             let player = document.createElement('div');
             player.id = "player";
@@ -40,35 +39,60 @@ for (let i = 0; i < map.length; i++) {
     mapSection.appendChild(line);
 }
 // Labirinto e player
+let x = 0;
+let y = 9;
+let movePlayer = player.parentElement.parentElement.parentElement.children;
+const textWin = document.getElementById('textWin');
 
-document.addEventListener('keydown', (evento) => {
-    const keyName = evento.key;
-    const movePlayer = document.getElementById('player');
-    const parentElement1 = movePlayer.parentElement.parentElement.parentElement.children;
+function vitoria() {
+    textWin.innerText = "Você conseguiu atravessar o labirinto. Parabéns!!"
+}
 
-    for (let i = 0; i < parentElement1.length; i++) {
-        for (let j = 0; j < parentElement1[i].children.length; j++) {
-            if (parentElement1[i].children[j].childElementCount !== 0) {
-                let nextCell = parentElement1[i].children[j + 1];
-                let previousCell = parentElement1[i].children[j - 1];
-                let lineAbove = parentElement1[i - 1].children[j];
-                let lineBelow = parentElement1[i + 1].children[j];
-                console.log(lineAbove);
-                console.log(lineBelow)
-                if (keyName === "ArrowRight" && nextCell.style.backgroundColor === "") {
-                    nextCell.appendChild(player);
-                    break;
-                } else if (keyName === "ArrowLeft" && previousCell.style.backgroundColor === "") {
-                    previousCell.appendChild(player);
-                    break;
-                } else if (keyName === "ArrowUp" && lineAbove.style.backgroundColor === "") {
-                    lineAbove.appendChild(player);
-                    break;
-                } else if (keyName === "ArrowDown" && lineBelow.style.backgroundColor === "") {
-                    lineBelow.appendChild(player);
-                    break;
-                }
-            }
+function reset() {
+    movePlayer[9].children[0].appendChild(player)
+    textWin.innerText = "";
+}
+
+function game(event) {
+    const keyName = event.key;
+
+    if (keyName === "ArrowRight") {
+        if (map[y][x + 1] === " ") {
+            x += 1;
+            movePlayer[y].children[x].appendChild(player)
+        } else if (map[y][x + 1] === "F") {
+            x += 1;
+            movePlayer[y].children[x].appendChild(player)
+            setTimeout(() => vitoria(), 1000)
+        }
+    } else if (keyName === "ArrowLeft") {
+        if (map[y][x - 1] === " " || map[y][x - 1] === "S") {
+            x -= 1;
+            movePlayer[y].children[x].appendChild(player)
+        } else if (map[y][x + 1] === "F") {
+            x -= 1;
+            movePlayer[y].children[x].appendChild(player)
+            setTimeout(() => vitoria(), 1000)
+        }
+    } else if (keyName === "ArrowUp") {
+        if (map[y - 1][x] === " ") {
+            y -= 1;
+            movePlayer[y].children[x].appendChild(player)
+        } else if (map[y][x + 1] === "F") {
+            y -= 1;
+            movePlayer[y].children[x].appendChild(player)
+            setTimeout(() => vitoria(), 1000)
+        }
+    } else if (keyName === "ArrowDown") {
+        if (map[y + 1][x] === " ") {
+            y += 1;
+            movePlayer[y].children[x].appendChild(player)
+        } else if (map[y][x + 1] === "F") {
+            y += 1;
+            movePlayer[y].children[x].appendChild(player)
+            setTimeout(() => vitoria(), 1000)
         }
     }
-});
+}
+
+document.addEventListener('keydown', game);
